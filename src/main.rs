@@ -22,6 +22,10 @@ enum Commands {
         #[arg(short, long)]
         list: bool,
     },
+    Echo {
+        #[arg(long)]
+        text: String,
+    },
 }
 
 fn main() {
@@ -45,6 +49,9 @@ fn main() {
             } else {
                 println!("Test");
             }
+        }
+        Some(Commands::Echo { text }) => {
+            println!("{}", lpkit::commands::echo::echo(text));
         }
         None => println!("No command"),
     }
